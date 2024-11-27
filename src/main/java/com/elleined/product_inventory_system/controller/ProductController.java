@@ -10,7 +10,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-// I have a suggestion should be /v1/products with s based on api endpoints standards.
+// I have a suggestion this should be /v1/products with s based on api endpoint standards.
 // So that when we hit GET request in /v1/products it's explicitly saying the return will be a list of products
 // Also for POST, PUT, PATCH and DELETE
 
