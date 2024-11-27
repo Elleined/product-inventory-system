@@ -1,5 +1,10 @@
 # product-inventory-system
 
+1. Implemented AOuth2
+2. Created CRUD of Product
+3. Implemented Unit testing in ProductService
+4. Provided Database Picture and DDL
+
 # Run this project using Docker
 - Go to the root project folder and run these commands.
 1. Create a docker network
