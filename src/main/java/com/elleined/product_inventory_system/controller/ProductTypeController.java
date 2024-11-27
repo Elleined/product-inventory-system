@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.stream.Stream;
 
 @RestController
-@RequestMapping("/types")
+@RequestMapping("/v1/product-types")
 @RequiredArgsConstructor
 public class ProductTypeController {
 
