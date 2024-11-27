@@ -4,6 +4,7 @@ import com.elleined.product_inventory_system.exception.ProductInventorySystemExc
 import com.elleined.product_inventory_system.mapper.ProductMapper;
 import com.elleined.product_inventory_system.model.Product;
 import com.elleined.product_inventory_system.repository.ProductRepository;
+import com.elleined.product_inventory_system.request.ProductRequest;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -21,11 +22,12 @@ public class ProductServiceImpl implements ProductService {
     private final ProductMapper productMapper;
 
     @Override
-    public Product save(String name,
-                        String description,
-                        Product.Type type,
-                        int quantity,
-                        BigDecimal price) {
+    public Product save(ProductRequest request) {
+        String name = request.getName();
+        String description = request.getDescription();
+        Product.Type type = request.getType();
+        int quantity = request.getQuantity();
+        BigDecimal price = request.getPrice();
 
         Product product = productMapper.toEntity(name, description, type, quantity, price);
         productRepository.save(product);
@@ -45,17 +47,13 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Product update(Product product,
-                          String name,
-                          String description,
-                          Product.Type type,
-                          int quantity,
-                          BigDecimal price) {
+                          ProductRequest request) {
 
-        product.setName(name);
-        product.setDescription(description);
-        product.setType(type);
-        product.setQuantity(quantity);
-        product.setPrice(price);
+        product.setName(request.getName());
+        product.setDescription(request.getDescription());
+        product.setType(request.getType());
+        product.setQuantity(request.getQuantity());
+        product.setPrice(request.getPrice());
 
         productRepository.save(product);
         log.debug("Updating product with id of {} success", product.getId());
@@ -64,6 +62,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public void delete(Product product) {
-
+        productRepository.delete(product);
+        log.debug("Deleting product success");
     }
 }
